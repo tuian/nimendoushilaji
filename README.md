@@ -7,6 +7,6 @@
 	> 域名收集 url收集 数据处理 漏洞检测
 * 参考资料
 	> 资产收集参考:https://github.com/FeeiCN/ESD  
-	> 爬虫参考:https://security.tencent.com/index.php/blog/msg/34    
-				http://www.freebuf.com/articles/web/165554.html
+	> 爬虫参考:https://security.tencent.com/index.php/blog/msg/34  
+		> http://www.freebuf.com/articles/web/165554.html
 
