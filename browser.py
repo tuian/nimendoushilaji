@@ -4,13 +4,6 @@ Created on 2018年5月21日
 
 @author: guimaizi
 '''
-# coding: utf-8
-'''
-Created on 2018��4��15��
-
-@author: 63571
-'''
-
 #import socket,re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
