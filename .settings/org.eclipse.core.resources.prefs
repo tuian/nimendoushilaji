@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding/browser.py=utf-8
+encoding//lib/browser.py=utf-8
+encoding//lib/mongodb_con.py=utf-8
