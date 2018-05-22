@@ -7,12 +7,13 @@ Created on 2018年5月21日
 #import socket,re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import time
 class webbrowser:
     def __init__(self):
         #浏览器
         chrome_options = Options()
-        #后台运行
-        chrome_options.add_argument('--headless')
+        #headless模式运行
+        #chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         #不加载图片
@@ -31,8 +32,9 @@ class webbrowser:
     def access(self,url):
         #访问url
         self.driver.get(url)
+        self.driver.implicitly_wait(10)
     def callback_network(self):
-        #return http请求url
+        #return 页面的网络请求信息
         performances = self.driver.execute_script("return window.performance.getEntries()")
         list_net_url=list(set([i['name'] for i in performances]))
         return list_net_url
@@ -43,14 +45,19 @@ class webbrowser:
     def callback_source(self):
         #return 页面源码
         return self.driver.page_source
+    def callback_url(self):
+        #return 当前url
+        return self.driver.current_url
     def close(self):
         #结束浏览器
         self.driver.quit()
 if __name__ == '__main__':
     itme=webbrowser()
-    for i in ['https://www.baidu.com/']:
+    for i in ['https://www.baidu.com/','http://www.qq.com']:
         itme.access(i)
         print(itme.callback_href())
         print(itme.callback_network())
-        print(itme.callback_source())
+        #print(itme.callback_source())
+        print(itme.callback_url())
+        time.sleep(10)
     itme.close()

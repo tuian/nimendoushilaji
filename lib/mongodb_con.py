@@ -10,11 +10,11 @@ class mongodb_con:
         self.client = MongoClient("localhost", 27017)
         self.db_target_domian = self.client.target_domian
         self.db_spider_domian = self.client.spider_domian
-    def into(self,domain,data):
+    def into_target(self,domain,data):
         try:
             #print data
             domain=domain.replace('.','_')
-            collection = self.db[domain]
+            collection = self.db_target_domian[domain]
             collection.insert(data,manipulate=True)
         except Exception as e:
             print(e)
@@ -22,5 +22,5 @@ class mongodb_con:
         collection = self.db[self.domain]
         return collection.find({"url": "%s"%url}).count()
 if '__main__' == __name__:
-    p=mongodb_con('www.qq.com')
-    p.into({'a':'b'})
+    p=mongodb_con()
+    p.into_target('qq.com',{'a':'b'})
