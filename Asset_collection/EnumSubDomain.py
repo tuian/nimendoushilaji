@@ -6,9 +6,11 @@ Created on 2018��5��23��
 '''
 import dns.resolver
 from itertools import product
+from lib import model
 class EnumSubDomain:
     def __init__(self,domain):
         self.domain=domain
+        self.model=model.model()
     def sort_domain(self):
         for i in range(1, 3):
             list_str = []
@@ -18,13 +20,12 @@ class EnumSubDomain:
                  'y', 'z']
             for j in list(product(l, repeat=i)):
                 list_str.append("".join(j)+ '.'+self.domain)
-            for i in list_str:
-                self.query(i)
+            self.model.threadpool_fun(self.query,list_str,200)
     def query(self,domain):
         try:
             A = dns.resolver.query(domain, 'A') 
             print(domain)
-            print(A)
+            #print(A)
         except:
             pass
 if __name__=="__main__":
