@@ -13,7 +13,7 @@ class webbrowser:
         #浏览器
         chrome_options = Options()
         #headless模式运行
-        #chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         #不加载图片
@@ -48,6 +48,9 @@ class webbrowser:
     def callback_url(self):
         #return 当前url
         return self.driver.current_url
+    def callback_title(self):
+        #return html title
+        return self.driver.title
     def close(self):
         #结束浏览器
         self.driver.quit()
@@ -59,5 +62,6 @@ if __name__ == '__main__':
         print(itme.callback_network())
         #print(itme.callback_source())
         print(itme.callback_url())
-        time.sleep(10)
+        print(itme.callback_title())
+        #time.sleep(10)
     itme.close()

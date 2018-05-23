@@ -8,5 +8,5 @@
 * 参考资料
 	> 资产收集参考:https://github.com/FeeiCN/ESD  
 	> 爬虫参考:https://security.tencent.com/index.php/blog/msg/34  
-	> url去重:http://www.freebuf.com/articles/web/165554.html
+	> url去重:http://www.freebuf.com/articles/web/165554.html  
 	> 浏览器参考:https://segmentfault.com/a/1190000013067705
