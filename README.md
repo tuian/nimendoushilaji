@@ -1,12 +1,12 @@
-#ÄãÃÇ¶¼ÊÇÀ¬»ø.py  
-##´ÓºÚºĞ×Ê²úÊÕ¼¯µ½Â©¶´¼ì²âµÄwebÉ¨ÃèÆ÷
-	> ÆóÒµweb×Ê²úÊÕ¼¯¡¢¼à¿Ø¡¢·ÖÎö¡¢¼ì²â
-* ĞèÒª»·¾³  
+#ä½ ä»¬éƒ½æ˜¯åƒåœ¾.py  
+##ä»é»‘ç›’èµ„äº§æ”¶é›†åˆ°æ¼æ´æ£€æµ‹çš„webæ‰«æå™¨
+	> ä¼ä¸šwebèµ„äº§æ”¶é›†ã€ç›‘æ§ã€åˆ†æã€æ£€æµ‹
+* éœ€è¦ç¯å¢ƒ  
 	> python3 mongodb chrome  
-* ¹¦ÄÜ
-	> ÓòÃûÊÕ¼¯ urlÊÕ¼¯ Êı¾İ´¦Àí Â©¶´¼ì²â
-* ²Î¿¼×ÊÁÏ
-	> ×Ê²úÊÕ¼¯²Î¿¼:https://github.com/FeeiCN/ESD  
-	> ÅÀ³æ²Î¿¼:https://security.tencent.com/index.php/blog/msg/34  
-	> urlÈ¥ÖØ:http://www.freebuf.com/articles/web/165554.html  
-	> ä¯ÀÀÆ÷²Î¿¼:https://segmentfault.com/a/1190000013067705
+* åŠŸèƒ½
+	> åŸŸåæ”¶é›† urlæ”¶é›† æ•°æ®å¤„ç† æ¼æ´æ£€æµ‹
+* å‚è€ƒèµ„æ–™
+	> èµ„äº§æ”¶é›†å‚è€ƒ:https://github.com/FeeiCN/ESD  
+	> çˆ¬è™«å‚è€ƒ:https://security.tencent.com/index.php/blog/msg/34  
+	> urlå»é‡:http://www.freebuf.com/articles/web/165554.html  
+	> æµè§ˆå™¨å‚è€ƒ:https://segmentfault.com/a/1190000013067705
