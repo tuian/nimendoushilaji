@@ -35,8 +35,7 @@ class browser_pool:
         for i in list:
             j=j+1
             list_text.append({"url":i,"signal":j})
-            if j>=5:
-                j=0
+            if j>=5:j=0
         #print(list_text)
         self.model.threadpool_fun(self.run, list_text, 5)
         
