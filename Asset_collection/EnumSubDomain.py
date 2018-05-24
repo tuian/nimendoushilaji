@@ -11,6 +11,7 @@ class EnumSubDomain:
     def __init__(self,domain):
         self.domain=domain
         self.model=model.model()
+        self.domain_list=[]
     def sort_domain(self):
         for i in range(1, 3):
             list_str = []
@@ -25,9 +26,12 @@ class EnumSubDomain:
         try:
             A = dns.resolver.query(domain, 'A') 
             print(domain)
-            #print(A)
+            self.domain_list.append(domain)
         except:
             pass
+    def callback_domain(self):
+        return self.domain_list
 if __name__=="__main__":
     p=EnumSubDomain('qq.com')
     p.sort_domain()
+    print(p.callback_domain())

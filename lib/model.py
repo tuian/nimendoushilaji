@@ -17,4 +17,4 @@ class model:
         requests = threadpool.makeRequests(fun, lst)
         [pool.putRequest(req) for req in requests]
         pool.wait()
-        pool.dismissWorkers(num, do_join=True)   
+        #pool.dismissWorkers(num, do_join=True)   
