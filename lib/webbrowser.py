@@ -31,8 +31,14 @@ class webbrowser:
             self.driver.execute_script("document.cookie = \"%s\"" % i)
     def access(self,url):
         #访问url
-        self.driver.get(url)
-        self.driver.implicitly_wait(10)
+        try:
+            #print(url)
+            self.driver.get(url)
+            self.driver.implicitly_wait(10)
+            return True
+        except Exception as e:
+                print(e)
+                return False
     def callback_network(self):
         #return 页面的网络请求信息
         performances = self.driver.execute_script("return window.performance.getEntries()")
@@ -47,7 +53,10 @@ class webbrowser:
         return self.driver.page_source
     def callback_url(self):
         #return 当前url
-        return self.driver.current_url
+        try:
+            return self.driver.current_url
+        except:
+            return None
     def callback_title(self):
         #return html title
         return self.driver.title
@@ -56,11 +65,8 @@ class webbrowser:
         self.driver.quit()
 if __name__ == '__main__':
     itme=webbrowser()
-    for i in ['https://www.baidu.com/','http://www.qq.com']:
-        itme.access(i)
-        print(itme.callback_href())
-        print(itme.callback_network())
-        #print(itme.callback_source())
+    for i in ['http://s.qq.com']:
+        print(itme.access(i))
         print(itme.callback_url())
         print(itme.callback_title())
         #time.sleep(10)

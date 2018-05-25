@@ -26,7 +26,7 @@ class EnumSubDomain:
         try:
             A = dns.resolver.query(domain, 'A') 
             print(domain)
-            self.domain_list.append(domain)
+            self.domain_list.append('http://'+domain)
         except:
             pass
     def callback_domain(self):

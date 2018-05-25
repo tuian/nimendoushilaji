@@ -1,6 +1,6 @@
 # coding: utf-8
 '''
-Created on 2018��5��23��
+Created on 2018年5月23日
 
 @author: guimaizi
 '''
