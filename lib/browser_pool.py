@@ -46,7 +46,6 @@ class browser_pool:
                     [ks.join() for ks in tsk]
                     j=0
                     list_text=[]
-            #print(list_text)
             #self.model.threadpool_fun(self.run, list_text, 5)
         finally:
             self.close_browser()

@@ -66,7 +66,11 @@ class webbrowser:
         try:
             #print(url)
             self.driver.get(url)
-            self.driver.implicitly_wait(8)
+            result = EC.alert_is_present()(self.driver)
+            if result:result.dismiss()
+            self.driver.implicitly_wait(6)
+            self.driver.set_script_timeout(6)
+            self.driver.set_page_load_timeout(6)  
             return {'url':self.driver.current_url,'title':self.driver.title,'html_size':len(self.driver.page_source),'state':0,'time':time.strftime('%Y-%m-%d',time.localtime())}
         except Exception as e:
                 print(e)
@@ -76,8 +80,8 @@ class webbrowser:
         self.driver.quit()
 if __name__ == '__main__':
     itme=webbrowser()
-    for i in ['http://l.qq.com', 'http://t.qq.com', 'http://p.qq.com', 'http://b.qq.com', 'http://d.qq.com', 'http://i.qq.com', 'http://o.qq.com', 'http://x.qq.com', 'http://0.qq.com', 'http://4.qq.com', 'http://u.qq.com', 'http://5.qq.com', 'http://q.qq.com', 'http://v.qq.com', 'http://9.qq.com', 'http://c.qq.com', 'http://e.qq.com', 'http://g.qq.com', 'http://s.qq.com', 'http://6.qq.com', 'http://8.qq.com', 'http://a.qq.com', 'http://1.qq.com', 'http://7.qq.com', 'http://h.qq.com', 'http://z.qq.com', 'http://m.qq.com']:
-        print(itme.callback_data(i))
+    #for i in ['http://l.qq.com', 'http://t.qq.com', 'http://p.qq.com', 'http://b.qq.com', 'http://d.qq.com', 'http://i.qq.com', 'http://o.qq.com', 'http://x.qq.com', 'http://0.qq.com', 'http://4.qq.com', 'http://u.qq.com', 'http://5.qq.com', 'http://q.qq.com', 'http://v.qq.com', 'http://9.qq.com', 'http://c.qq.com', 'http://e.qq.com', 'http://g.qq.com', 'http://s.qq.com', 'http://6.qq.com', 'http://8.qq.com', 'http://a.qq.com', 'http://1.qq.com', 'http://7.qq.com', 'http://h.qq.com', 'http://z.qq.com', 'http://m.qq.com']:
+    print(itme.callback_data('http://b.qq.com/'))
         #print(itme.callback_url())
         #print(itme.callback_title())
         #time.sleep(10)
