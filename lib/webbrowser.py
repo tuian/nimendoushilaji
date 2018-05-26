@@ -15,17 +15,18 @@ class webbrowser:
         #浏览器
         chrome_options = Options()
         #headless模式运行
-        #chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         #不加载图片
         chrome_options.add_argument('blink-settings=imagesEnabled=false')
         #调用当前chrome用户数据 cookie登陆方式
-        #chrome_options.add_argument(r'user-data-dir=C:\Users\63571\AppData\Local\Google\Chrome\User Data')
+        chrome_options.add_argument(r'user-data-dir=C:\Users\63571\AppData\Local\Google\Chrome\User Data')
         chrome_options.add_argument('--hide-scrollbars') 
         chrome_options.binary_location = r'C:\Users\63571\AppData\Local\Google\Chrome\Application\chrome.exe'
         # chrome_options.binary_location = '/opt/google/chrome/chrome'
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
+        self.timeout=15
     def set_cookie(self,url,cookie):
         #js设置cookie
         self.driver.get(url)
@@ -68,9 +69,9 @@ class webbrowser:
             self.driver.get(url)
             result = EC.alert_is_present()(self.driver)
             if result:result.dismiss()
-            self.driver.implicitly_wait(6)
-            self.driver.set_script_timeout(6)
-            self.driver.set_page_load_timeout(6)  
+            self.driver.implicitly_wait(self.timeout)
+            self.driver.set_script_timeout(self.timeout)
+            self.driver.set_page_load_timeout(self.timeout)   
             return {'url':self.driver.current_url,'title':self.driver.title,'html_size':len(self.driver.page_source),'state':0,'time':time.strftime('%Y-%m-%d',time.localtime())}
         except Exception as e:
                 print(e)
