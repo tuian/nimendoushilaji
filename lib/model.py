@@ -9,7 +9,6 @@ class model:
     def threadpool_fun(self,fun,lists,num):
         #print(1,lists)
         q = queue.Queue()
-        #map(q.put,lists)
         for i in lists:
             q.put(i)
         lst = [q.get() for i in range(q.qsize())]

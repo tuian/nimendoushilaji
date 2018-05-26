@@ -7,19 +7,21 @@ Created on 2018年5月21日
 #import socket,re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 class webbrowser:
     def __init__(self):
         #浏览器
         chrome_options = Options()
         #headless模式运行
-        chrome_options.add_argument('--headless')
+        #chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         #不加载图片
         chrome_options.add_argument('blink-settings=imagesEnabled=false')
         #调用当前chrome用户数据 cookie登陆方式
-        chrome_options.add_argument(r'user-data-dir=C:\Users\63571\AppData\Local\Google\Chrome\User Data')
+        #chrome_options.add_argument(r'user-data-dir=C:\Users\63571\AppData\Local\Google\Chrome\User Data')
         chrome_options.add_argument('--hide-scrollbars') 
         chrome_options.binary_location = r'C:\Users\63571\AppData\Local\Google\Chrome\Application\chrome.exe'
         # chrome_options.binary_location = '/opt/google/chrome/chrome'
@@ -60,14 +62,23 @@ class webbrowser:
     def callback_title(self):
         #return html title
         return self.driver.title
+    def callback_data(self,url):
+        try:
+            #print(url)
+            self.driver.get(url)
+            self.driver.implicitly_wait(8)
+            return {'url':self.driver.current_url,'title':self.driver.title,'html_size':len(self.driver.page_source),'state':0,'time':time.strftime('%Y-%m-%d',time.localtime())}
+        except Exception as e:
+                print(e)
+                return False
     def close(self):
         #结束浏览器
         self.driver.quit()
 if __name__ == '__main__':
     itme=webbrowser()
-    for i in ['http://s.qq.com']:
-        print(itme.access(i))
-        print(itme.callback_url())
-        print(itme.callback_title())
+    for i in ['http://l.qq.com', 'http://t.qq.com', 'http://p.qq.com', 'http://b.qq.com', 'http://d.qq.com', 'http://i.qq.com', 'http://o.qq.com', 'http://x.qq.com', 'http://0.qq.com', 'http://4.qq.com', 'http://u.qq.com', 'http://5.qq.com', 'http://q.qq.com', 'http://v.qq.com', 'http://9.qq.com', 'http://c.qq.com', 'http://e.qq.com', 'http://g.qq.com', 'http://s.qq.com', 'http://6.qq.com', 'http://8.qq.com', 'http://a.qq.com', 'http://1.qq.com', 'http://7.qq.com', 'http://h.qq.com', 'http://z.qq.com', 'http://m.qq.com']:
+        print(itme.callback_data(i))
+        #print(itme.callback_url())
+        #print(itme.callback_title())
         #time.sleep(10)
     itme.close()
