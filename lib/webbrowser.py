@@ -17,7 +17,10 @@ class webbrowser:
         #headless模式运行
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--no-sandbox')
+        #chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-flash-core-animation')
+        chrome_options.add_argument('--disable-accelerated-video-decode')
+        chrome_options.add_argument('--disable-accelerated-video')
         #不加载图片
         chrome_options.add_argument('blink-settings=imagesEnabled=false')
         #调用当前chrome用户数据 cookie登陆方式
@@ -72,9 +75,12 @@ class webbrowser:
             self.driver.implicitly_wait(self.timeout)
             self.driver.set_script_timeout(self.timeout)
             self.driver.set_page_load_timeout(self.timeout)   
-            return {'url':self.driver.current_url,'title':self.driver.title,'html_size':len(self.driver.page_source),'state':0,'time':time.strftime('%Y-%m-%d',time.localtime())}
+            html_size=len(self.driver.page_source)
+            if html_size!=76:
+                return {'url':url,'current_url':self.driver.current_url,'title':self.driver.title,'html_size':len(self.driver.page_source),'state':0,'time':time.strftime('%Y-%m-%d',time.localtime())}
+            else:return False
         except Exception as e:
-                print(e)
+                print(url+':'+str(e))
                 return False
     def close(self):
         #结束浏览器
@@ -82,7 +88,7 @@ class webbrowser:
 if __name__ == '__main__':
     itme=webbrowser()
     #for i in ['http://l.qq.com', 'http://t.qq.com', 'http://p.qq.com', 'http://b.qq.com', 'http://d.qq.com', 'http://i.qq.com', 'http://o.qq.com', 'http://x.qq.com', 'http://0.qq.com', 'http://4.qq.com', 'http://u.qq.com', 'http://5.qq.com', 'http://q.qq.com', 'http://v.qq.com', 'http://9.qq.com', 'http://c.qq.com', 'http://e.qq.com', 'http://g.qq.com', 'http://s.qq.com', 'http://6.qq.com', 'http://8.qq.com', 'http://a.qq.com', 'http://1.qq.com', 'http://7.qq.com', 'http://h.qq.com', 'http://z.qq.com', 'http://m.qq.com']:
-    print(itme.callback_data('http://b.qq.com/'))
+    print(itme.callback_data('http://www.w3school.com.cn/tiy/t.asp?f=html5_video_dom'))
         #print(itme.callback_url())
         #print(itme.callback_title())
         #time.sleep(10)

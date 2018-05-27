@@ -13,18 +13,7 @@ class browser_pool:
         #浏览器池
         self.model=model.model()
         self.list_browser=[webbrowser.webbrowser() for i in range(5)]
-    def run(self,text):
-        if text['signal']==1:
-            self.fun_control(self.list_browser[0], text['url'])
-        elif text['signal']==2:
-            self.fun_control(self.list_browser[1], text['url'])
-        elif text['signal']==3:
-            self.fun_control(self.list_browser[2], text['url'])
-        elif text['signal']==4:
-            self.fun_control(self.list_browser[3], text['url'])
-        elif text['signal']==5:
-            self.fun_control(self.list_browser[4], text['url'])
-    def fun_control(self,fun,text):
+    def run(self,fun,text):
         #print(text)
         data=fun.callback_data(text)
         if data!=False:
@@ -40,13 +29,12 @@ class browser_pool:
                     tsk = [] 
                     for k in list_text:
                         #print(k)
-                        p = threading.Thread(target=self.fun_control,args=(self.list_browser[k['signal']],k['url']))
+                        p = threading.Thread(target=self.run,args=(self.list_browser[k['signal']],k['url']))
                         p.start()
                         tsk.append(p)
                     [ks.join() for ks in tsk]
                     j=0
                     list_text=[]
-            #self.model.threadpool_fun(self.run, list_text, 5)
         finally:
             self.close_browser()
     def close_browser(self):
