@@ -10,7 +10,7 @@ from lib import model
 class EnumSubDomain:
     def __init__(self,domain):
         self.domain=domain
-        self.model=model.model()
+        self.model=model.modmodel
         self.domain_list=[]
     def sort_domain(self):
         for i in range(1, 3):

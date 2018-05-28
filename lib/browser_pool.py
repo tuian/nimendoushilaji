@@ -7,11 +7,9 @@ Created on 2018年5月24日
 '''
 import threading,time
 from lib import webbrowser
-from lib import model
 class browser_pool:
     def __init__(self):
         #浏览器池
-        self.model=model.model()
         self.list_browser=[webbrowser.webbrowser() for i in range(5)]
     def run(self,fun,text):
         #print(text)

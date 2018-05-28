@@ -4,7 +4,7 @@ Created on 2018年5月23日
 
 @author: guimaizi
 '''
-import threadpool,queue,urllib.parse  
+import threadpool,queue,urllib.parse,configparser 
 class model:
     def threadpool_fun(self,fun,lists,num):
         #print(1,lists)
@@ -24,3 +24,7 @@ class model:
             return url.scheme+'://'+url.netloc
         else:
             return False  
+    def read_config(self,itme):
+        cf = configparser.ConfigParser()
+        cf.readfp(open(r'C:\Users\63571\eclipse-workspace\nimendoushilaji\config.ini'))    
+        return cf.get("config",itme)

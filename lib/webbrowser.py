@@ -9,25 +9,21 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
+import time,model
 class webbrowser:
     def __init__(self):
+        models=model.model()
         #浏览器
         chrome_options = Options()
         #headless模式运行
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
-        #chrome_options.add_argument('--no-sandbox')
-        #chrome_options.add_argument('--disable-flash-core-animation')
-        #chrome_options.add_argument('--disable-accelerated-video-decode')
-        #chrome_options.add_argument('--disable-accelerated-video')
         #不加载图片
         chrome_options.add_argument('blink-settings=imagesEnabled=false')
         #调用当前chrome用户数据 cookie登陆方式
-        chrome_options.add_argument(r'user-data-dir=C:\Users\63571\AppData\Local\Google\Chrome\User Data')
+        chrome_options.add_argument(r'user-data-dir=%s'%models.read_config('chrome_user_data'))
         chrome_options.add_argument('--hide-scrollbars') 
-        chrome_options.binary_location = r'C:\Users\63571\AppData\Local\Google\Chrome\Application\chrome.exe'
-        # chrome_options.binary_location = '/opt/google/chrome/chrome'
+        chrome_options.binary_location = r'%s'%models.read_config('chrome_path')
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
         self.timeout=8
     def set_cookie(self,url,cookie):
@@ -87,9 +83,8 @@ class webbrowser:
         self.driver.quit()
 if __name__ == '__main__':
     itme=webbrowser()
-    #for i in ['http://l.qq.com', 'http://t.qq.com', 'http://p.qq.com', 'http://b.qq.com', 'http://d.qq.com', 'http://i.qq.com', 'http://o.qq.com', 'http://x.qq.com', 'http://0.qq.com', 'http://4.qq.com', 'http://u.qq.com', 'http://5.qq.com', 'http://q.qq.com', 'http://v.qq.com', 'http://9.qq.com', 'http://c.qq.com', 'http://e.qq.com', 'http://g.qq.com', 'http://s.qq.com', 'http://6.qq.com', 'http://8.qq.com', 'http://a.qq.com', 'http://1.qq.com', 'http://7.qq.com', 'http://h.qq.com', 'http://z.qq.com', 'http://m.qq.com']:
     print(itme.callback_data('http://www.w3school.com.cn/tiy/t.asp?f=html5_video_dom'))
-        #print(itme.callback_url())
-        #print(itme.callback_title())
-        #time.sleep(10)
+    #print(itme.callback_url())
+    #print(itme.callback_title())
+    #time.sleep(10)
     itme.close()
