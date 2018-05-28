@@ -18,9 +18,9 @@ class webbrowser:
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         #chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-flash-core-animation')
-        chrome_options.add_argument('--disable-accelerated-video-decode')
-        chrome_options.add_argument('--disable-accelerated-video')
+        #chrome_options.add_argument('--disable-flash-core-animation')
+        #chrome_options.add_argument('--disable-accelerated-video-decode')
+        #chrome_options.add_argument('--disable-accelerated-video')
         #不加载图片
         chrome_options.add_argument('blink-settings=imagesEnabled=false')
         #调用当前chrome用户数据 cookie登陆方式
@@ -29,7 +29,7 @@ class webbrowser:
         chrome_options.binary_location = r'C:\Users\63571\AppData\Local\Google\Chrome\Application\chrome.exe'
         # chrome_options.binary_location = '/opt/google/chrome/chrome'
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
-        self.timeout=15
+        self.timeout=8
     def set_cookie(self,url,cookie):
         #js设置cookie
         self.driver.get(url)
