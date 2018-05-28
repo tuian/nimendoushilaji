@@ -21,9 +21,9 @@ class test:
         else:
             return False
     def read_config(self,itme):
-        cf = configparser.ConfigParser()
-        cf.readfp(open('config.ini'))    
-        return cf.get("config",itme)
+        fo = open(r'C:\Users\63571\eclipse-workspace\nimendoushilaji\tmp\href_tmp.txt', "a")
+        fo.write('a')
+        fo.close()
 if __name__=="__main__":
     p=test()
     str=['http://www.dsada.net/dsadsa.php?dsadas=1&dsada=213','http://www.sada.com/dsada.php']
