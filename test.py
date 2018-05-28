@@ -20,7 +20,6 @@ class test:
             return url.scheme+'://'+url.netloc
         else:
             return False
-        #print(url.)
     def read_config(self,itme):
         cf = configparser.ConfigParser()
         cf.readfp(open('config.ini'))    

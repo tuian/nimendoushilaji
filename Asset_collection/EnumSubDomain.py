@@ -4,13 +4,12 @@ Created on 2018��5��23��
 
 @author: guimaizi
 '''
-import dns.resolver
+import dns.resolver,model
 from itertools import product
-from lib import model
 class EnumSubDomain:
     def __init__(self,domain):
         self.domain=domain
-        self.model=model.modmodel
+        self.model=model.model
         self.domain_list=[]
     def sort_domain(self):
         for i in range(1, 3):

@@ -84,7 +84,4 @@ class webbrowser:
 if __name__ == '__main__':
     itme=webbrowser()
     print(itme.callback_data('http://www.w3school.com.cn/tiy/t.asp?f=html5_video_dom'))
-    #print(itme.callback_url())
-    #print(itme.callback_title())
-    #time.sleep(10)
     itme.close()

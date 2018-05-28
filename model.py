@@ -25,6 +25,7 @@ class model:
         else:
             return False  
     def read_config(self,itme):
+        #返回配置文件信息
         cf = configparser.ConfigParser()
         cf.readfp(open(r'C:\Users\63571\eclipse-workspace\nimendoushilaji\config.ini'))    
         return cf.get("config",itme)
