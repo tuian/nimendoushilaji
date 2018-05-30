@@ -24,6 +24,13 @@ class model:
             return url.scheme+'://'+url.netloc
         else:
             return False  
+    def callback_tmp_list(self):
+        list_url=[]
+        for i in open("{path}\\tmp\\href_tmp.txt".format(path=self.read_config('path'))):
+            list_url.append(i.strip())
+        for i in open("{path}\\tmp\\network_tmp.txt".format(path=self.read_config('path'))):
+            list_url.append(i.strip())
+        return list(set(list_url))
     def read_config(self,itme):
         #返回配置文件信息
         cf = configparser.ConfigParser()
