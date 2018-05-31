@@ -23,4 +23,4 @@ class mongodb_con:
         return collection.find({"url": "%s"%url}).count()
 if '__main__' == __name__:
     p=mongodb_con()
-    p.into_target('qq.com',{'a':'b'})
+    p.into_target('qq.com',{'a':'b'}) 

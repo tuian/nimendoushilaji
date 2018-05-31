@@ -9,10 +9,10 @@ from itertools import product
 class EnumSubDomain:
     def __init__(self,domain):
         self.domain=domain
-        self.model=model.model
+        self.model=model.model()
         self.domain_list=[]
-    def sort_domain(self):
-        for i in range(1, 3):
+    def sort_domain(self,num):
+        for i in range(1, num):
             list_str = []
             l = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', \
                  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', \
@@ -24,7 +24,7 @@ class EnumSubDomain:
     def query(self,domain):
         try:
             A = dns.resolver.query(domain, 'A') 
-            print(domain)
+            #print(domain)
             self.domain_list.append('http://'+domain)
         except:
             pass

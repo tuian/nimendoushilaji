@@ -4,7 +4,7 @@ Created on 2018年5月23日
 
 @author: guimaizi
 '''
-import threadpool,queue,urllib.parse,configparser 
+import threadpool,queue,urllib.parse,configparser,os 
 class model:
     def threadpool_fun(self,fun,lists,num):
         #print(1,lists)
@@ -36,3 +36,12 @@ class model:
         cf = configparser.ConfigParser()
         cf.readfp(open(r'C:\Users\63571\eclipse-workspace\nimendoushilaji\config.ini'))    
         return cf.get("config",itme)
+    def del_tmp(self):
+        path_href="{path}\\tmp\\href_tmp.txt".format(path=self.read_config('path'))
+        if os.path.exists(path_href):
+            #删除文件，可使用以下两种方法。
+            os.remove(path_href)
+        path_href="{path}\\tmp\\network_tmp.txt".format(path=self.read_config('path'))
+        if os.path.exists(path_href):
+            #删除文件，可使用以下两种方法。
+            os.remove(path_href)
