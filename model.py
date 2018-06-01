@@ -37,11 +37,8 @@ class model:
         cf.readfp(open(r'C:\Users\63571\eclipse-workspace\nimendoushilaji\config.ini'))    
         return cf.get("config",itme)
     def del_tmp(self):
-        path_href="{path}\\tmp\\href_tmp.txt".format(path=self.read_config('path'))
-        if os.path.exists(path_href):
-            #删除文件，可使用以下两种方法。
-            os.remove(path_href)
-        path_href="{path}\\tmp\\network_tmp.txt".format(path=self.read_config('path'))
-        if os.path.exists(path_href):
-            #删除文件，可使用以下两种方法。
-            os.remove(path_href)
+        #删除文件，可使用以下两种方法
+        for filename in ['href_tmp','network_tmp']:
+            path_href="{path}\\tmp\\{filename}.txt".format(path=self.read_config('path'),filename=filename)
+            if os.path.exists(path_href):
+                os.remove(path_href)
