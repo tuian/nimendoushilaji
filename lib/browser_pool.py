@@ -40,8 +40,8 @@ class browser_pool:
                     self.list_network=[]
                     j=0
                     list_text=[]
-        finally:
-            self.close_browser()
+        except Exception as e:
+            print(e)
     def write(self,filename,data):
         fo = open("{path}\\tmp\\{filename}.txt".format(path=self.models.read_config('path'),filename=filename), "a")
         for i in data:

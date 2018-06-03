@@ -64,7 +64,7 @@ class webbrowser:
         return self.driver.title
     def callback_data(self,url):
         try:
-            #print(url)
+            print(url)
             self.driver.get(url)
             result = EC.alert_is_present()(self.driver)
             if result:result.dismiss()

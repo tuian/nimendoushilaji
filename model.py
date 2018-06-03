@@ -56,7 +56,7 @@ class model:
             if url!=False:
                 list_url.append(url)      
         list_url=list(set([i for i in list_url if re.search(r'.*\.qq\.com$', i)!=None]))
-        list_url=[i for i in list_url if self.Blacklist(self.Blacklist_domain, i)!=False]
+        list_url=[i for i in list_url if self.Blacklist(Blacklist_domain, i)!=False]
         list_url=[i for i in list_url if self.mongodb_con.find(domain, i)==0]
         return list_url
             
