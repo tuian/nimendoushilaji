@@ -23,7 +23,7 @@ class while_domain:
         list_url=[i for i in list_url if self.mongodb_con.find(self.domain, i)==0]
         return list_url
 if __name__=="__main__":
-    p=while_domain('qq.com',['.qzone.qq.com','.gamebbs.qq.com','.ke.qq.com'])
+    p=while_domain('qq.com',['.qzone.qq.com','.gamebbs.qq.com','.ke.qq.com','.house.qq.com','.auto.qq.com','.openwebgame.qq.com'])
     print(p.read_tmp_domain())
                       
                 
