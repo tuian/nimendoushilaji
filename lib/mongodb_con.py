@@ -14,7 +14,7 @@ class mongodb_con:
         try:
             #print data
             domain=domain.replace('.','_')
-            collection = self.db_target_domian[self.domain]
+            collection = self.db_target_domian[domain]
             collection.insert(data,manipulate=True)
         except Exception as e:
             print(e)

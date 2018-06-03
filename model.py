@@ -4,8 +4,11 @@ Created on 2018年5月23日
 
 @author: guimaizi
 '''
-import threadpool,queue,urllib.parse,configparser,os 
+import threadpool,queue,urllib.parse,configparser,os,re
+from lib import mongodb_con
 class model:
+    def __init__(self):
+        self.mongodb_con=mongodb_con.mongodb_con()
     def threadpool_fun(self,fun,lists,num):
         #print(1,lists)
         q = queue.Queue()
@@ -42,3 +45,19 @@ class model:
             path_href="{path}\\tmp\\{filename}.txt".format(path=self.read_config('path'),filename=filename)
             if os.path.exists(path_href):
                 os.remove(path_href)
+    def Blacklist(self,Blacklist_domain,domain):
+        for j in Blacklist_domain:
+            if j in domain:
+                return False
+    def read_tmp_domain(self,Blacklist_domain,domain):
+        list_url=[]
+        for i in self.callback_tmp_list():
+            url=self.callback_domain(i)
+            if url!=False:
+                list_url.append(url)      
+        list_url=list(set([i for i in list_url if re.search(r'.*\.qq\.com$', i)!=None]))
+        list_url=[i for i in list_url if self.Blacklist(self.Blacklist_domain, i)!=False]
+        list_url=[i for i in list_url if self.mongodb_con.find(domain, i)==0]
+        return list_url
+            
+        
