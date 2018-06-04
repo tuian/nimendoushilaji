@@ -22,9 +22,9 @@ class start:
         self.mongodb_con.into_target(self.domain,self.browser.callback_res())
     def while_domain(self):
         try:
-            list_url=self.models.read_tmp_domain(self.Blacklist_domain, self.domain)
-            self.models.del_tmp()
             while True:
+                list_url=self.models.read_tmp_domain(self.Blacklist_domain, self.domain)
+                self.models.del_tmp()
                 if list_url==[]:
                     break
                 self.browser.control(list_url)
@@ -33,6 +33,6 @@ class start:
             self.browser.close_browser()
             
 if __name__=="__main__":
-    itme=start('qq.com',['.qzone.qq.com','.gamebbs.qq.com','.ke.qq.com'])
-    #itme.start()
+    itme=start('qq.com',['.qzone.qq.com','.gamebbs.qq.com','.ke.qq.com','.house.qq.com','.auto.qq.com','.openwebgame.qq.com','.house.qq.com'])
+    itme.start()
     itme.while_domain()
