@@ -3,29 +3,23 @@ Created on 2018年5月24日
 
 @author: rasca1
 '''
-import urllib.parse,configparser  
+import urllib.parse,model
 from lib import webbrowser
-class test:
-    def __init__(self):
-        #self.list_browser=[webbrowser.webbrowser() for i in range(5)]
-        pass
-    def get(self,i):
-        print(self.list_browser[0].callback_data(i))
-        '''for i in range(5):
-            print(i)'''
-    def callback_domain(self,url):
-        #返回domain
-        url=urllib.parse.urlparse(url)
-        if url.scheme=='http' or url.scheme=='https':
-            return url.scheme+'://'+url.netloc
-        else:
-            return False
-    def read_config(self,itme):
-        fo = open(r'C:\Users\63571\eclipse-workspace\nimendoushilaji\tmp\href_tmp.txt', "a")
-        fo.write('a')
-        fo.close()
-if __name__=="__main__":
-    p=test()
-    str=['http://www.dsada.net/dsadsa.php?dsadas=1&dsada=213','http://www.sada.com/dsada.php']
-    #print(p.callback_domain('http://www.sada.com/dsada.php'))
-    print(p.read_config('path'))
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+models=model.model()
+chrome_options = Options()
+#headless模式运行
+#chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+#不加载图片
+chrome_options.add_argument('blink-settings=imagesEnabled=false')
+#调用当前chrome用户数据 cookie登陆方式
+#chrome_options.add_argument(r'user-data-dir=%s'%models.read_config('chrome_user_data'))
+chrome_options.add_argument('--hide-scrollbars') 
+chrome_options.binary_location = r'%s'%models.read_config('chrome_path')
+driver = webdriver.Chrome(chrome_options=chrome_options)
+driver.get('http://www.qq.com')
+driver.set_page_load_timeout(8) 
+print(driver.page_source)
+driver.close()
