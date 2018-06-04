@@ -29,6 +29,7 @@ class start:
                     break
                 self.browser.control(list_url)
                 self.mongodb_con.into_target(self.domain,self.browser.callback_res())
+                list_url=[]
         finally:
             self.browser.close_browser()
             

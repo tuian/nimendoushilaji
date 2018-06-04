@@ -26,6 +26,7 @@ class webbrowser:
         chrome_options.binary_location = r'%s'%models.read_config('chrome_path')
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
         self.timeout=8
+        self.time=time.strftime('%Y-%m-%d',time.localtime())
     def set_cookie(self,url,cookie):
         #js设置cookie
         self.driver.get(url)
@@ -48,8 +49,11 @@ class webbrowser:
         return list_net_url
     def callback_href(self):
         #return href
-        list_url=list(set([i.get_attribute('href') for i in self.driver.find_elements_by_xpath("//a[@href]")]))
-        return (list_url)
+        try:
+            list_url=list(set([i.get_attribute('href') for i in self.driver.find_elements_by_xpath("//a[@href]")]))
+            return (list_url)
+        except:
+            return []
     def callback_source(self):
         #return 页面源码
         return self.driver.page_source
@@ -73,7 +77,7 @@ class webbrowser:
             self.driver.set_page_load_timeout(self.timeout)   
             html_size=len(self.driver.page_source)
             if html_size!=76:
-                return {'url':url,'current_url':self.driver.current_url,'title':self.driver.title,'html_size':len(self.driver.page_source),'state':0,'time':time.strftime('%Y-%m-%d',time.localtime())}
+                return {'url':url,'current_url':self.driver.current_url,'title':self.driver.title,'html_size':html_size,'state':0,'time':self.time}
             else:return False
         except Exception as e:
                 print(url+':'+str(e))
