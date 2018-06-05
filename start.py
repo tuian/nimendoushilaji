@@ -18,7 +18,7 @@ class start:
         self.models.del_tmp()
         EnumSub=EnumSubDomain.EnumSubDomain(self.domain)
         EnumSub.sort_domain(2)
-        self.browser.control(EnumSub.callback_domain())
+        self.browser.regulator(EnumSub.callback_domain())
         mongodb_con=mongodb_con.mongodb_con()
         mongodb_con.into_target(self.domain,self.browser.callback_res())
     def while_domain(self):
@@ -28,7 +28,7 @@ class start:
                 self.models.del_tmp()
                 if list_url==[]:
                     break
-                self.browser.control(list_url)
+                self.browser.regulator(list_url)
                 mongodb_con=mongodb_con.mongodb_con()
                 mongodb_con.into_target(self.domain,self.browser.callback_res())
                 list_url=[]
