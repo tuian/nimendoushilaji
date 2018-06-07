@@ -4,13 +4,16 @@ Created on 2018年5月23日
 
 @author: guimaizi
 '''
-import threadpool,queue,urllib.parse,configparser,os,re
+import threadpool,queue,urllib.parse,json,os,re
 from lib import mongodb_con
 class model:
-    def __init__(self):
-        self.mongodb_con=mongodb_con.mongodb_con()
+    def read_config(self,itme):
+        #返回配置文件信息
+        with open("C:\Users\63571\eclipse-workspace\nimendoushilaji\config.json",'r') as load_f:
+            load_dict = json.load(load_f)
+        return load_dict
     def threadpool_fun(self,fun,lists,num):
-        #print(1,lists)
+        #多线程
         q = queue.Queue()
         for i in lists:
             q.put(i)
@@ -34,11 +37,6 @@ class model:
         for i in open("{path}\\tmp\\network_tmp.txt".format(path=self.read_config('path'))):
             list_url.append(i.strip())
         return list(set(list_url))
-    def read_config(self,itme):
-        #返回配置文件信息
-        cf = configparser.ConfigParser()
-        cf.readfp(open(r'C:\Users\63571\eclipse-workspace\nimendoushilaji\config.ini'))    
-        return cf.get("config",itme)
     def del_tmp(self):
         #删除文件，可使用以下两种方法
         for filename in ['href_tmp','network_tmp']:
@@ -50,6 +48,7 @@ class model:
             if j in domain:
                 return False
     def read_tmp_domain(self,Blacklist_domain,domain):
+        #读取tmp目录文件 去重返回
         list_url=[]
         for i in self.callback_tmp_list():
             url=self.callback_domain(i)
@@ -57,7 +56,8 @@ class model:
                 list_url.append(url)      
         list_url=list(set([i for i in list_url if re.search(r'.*%s$'%domain, i)!=None]))
         list_url=[i for i in list_url if self.Blacklist(Blacklist_domain, i)!=False]
-        list_url=[i for i in list_url if self.mongodb_con.find(domain, i)==0]
+        mongodb_cons=mongodb_con.mongodb_con()
+        list_url=[i for i in list_url if mongodb_cons.find(domain, i)==0]
         return list_url
             
         
