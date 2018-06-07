@@ -3,10 +3,9 @@ Created on 2018年5月24日
 
 @author: rasca1
 '''
-import json
-with open("config.json",'r') as load_f:
-    load_dict = json.load(load_f)
-print(load_dict['path'])
+import model
+models=model.model()
+models.read_config()['target_domain']
 '''
 import time,model
 from lib import mongodb_con

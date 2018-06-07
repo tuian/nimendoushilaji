@@ -26,5 +26,4 @@ class mongodb_con:
         self.client.close()
 if '__main__' == __name__:
     p=mongodb_con()
-    #p.into_target('qq.com',{'url': 'http://v.qq.com', 'current_url': 'https://v.qq.com/', 'title': '腾讯视频-中国领先的在线视频媒体平台,海量高清视频在线观看', 'html_size': 1394887, 'state': 0, 'time': '2018-06-01'})
     print(p.find('qq.com','http://v.qq.com')) 

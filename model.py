@@ -7,11 +7,26 @@ Created on 2018年5月23日
 import threadpool,queue,urllib.parse,json,os,re
 from lib import mongodb_con
 class model:
-    def read_config(self,itme):
+    def read_config(self):
         #返回配置文件信息
-        with open("C:\Users\63571\eclipse-workspace\nimendoushilaji\config.json",'r') as load_f:
+        with open(r"C:\Users\63571\eclipse-workspace\nimendoushilaji\config.json",'r') as load_f:
             load_dict = json.load(load_f)
         return load_dict
+    def while_domain(self,fun):
+        try:
+            while True:
+                list_url=self.read_tmp_domain()
+                self.del_tmp()
+                if list_url==[]:
+                    break
+                fun.regulator(list_url)
+                data=fun.callback_res()
+                mongodb_cons=mongodb_con.mongodb_con()
+                mongodb_cons.into_target(self.read_config()['target_domain'],data)
+                mongodb_cons.close()
+                list_url=[]
+        except Exception as e:
+            print(e)
     def threadpool_fun(self,fun,lists,num):
         #多线程
         q = queue.Queue()
@@ -47,17 +62,17 @@ class model:
         for j in Blacklist_domain:
             if j in domain:
                 return False
-    def read_tmp_domain(self,Blacklist_domain,domain):
+    def read_tmp_domain(self):
         #读取tmp目录文件 去重返回
         list_url=[]
         for i in self.callback_tmp_list():
             url=self.callback_domain(i)
             if url!=False:
                 list_url.append(url)      
-        list_url=list(set([i for i in list_url if re.search(r'.*%s$'%domain, i)!=None]))
-        list_url=[i for i in list_url if self.Blacklist(Blacklist_domain, i)!=False]
+        list_url=list(set([i for i in list_url if re.search(r'.*%s$'%self.read_config()['target_domain'], i)!=None]))
+        list_url=[i for i in list_url if self.Blacklist(self.read_config()['Blacklist_domain'], i)!=False]
         mongodb_cons=mongodb_con.mongodb_con()
-        list_url=[i for i in list_url if mongodb_cons.find(domain, i)==0]
+        list_url=[i for i in list_url if mongodb_cons.find(self.read_config()['target_domain'], i)==0]
         return list_url
             
         
