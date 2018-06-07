@@ -10,13 +10,11 @@ from lib import webbrowser
 class browser_pool:
     def __init__(self):
         #浏览器池
-        #self.list_browser=[webbrowser.webbrowser() for i in range(5)]
         self.models=model.model()
         self.list_href=[]
         self.list_network=[]
         self.list_res=[]
     def run(self,fun,text):
-        #print(text)
         data=fun.callback_data(text)
         if data!=False:
             self.list_href.extend(fun.callback_href())
@@ -47,7 +45,7 @@ class browser_pool:
             for browser in list_browser:
                 browser.close()
     def write(self,filename,data):
-        fo = open("{path}\\tmp\\{filename}.txt".format(path=self.models.read_config('path'),filename=filename), "a")
+        fo = open("{path}\\tmp\\{filename}.txt".format(path=self.models.read_config()['path'],filename=filename), "a")
         for i in data:
             fo.write(i+'\n')
         fo.close()
