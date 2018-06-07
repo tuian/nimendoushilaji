@@ -20,7 +20,6 @@ class start:
         self.browser.regulator(EnumSub.callback_domain())
         mongodb_cons=mongodb_con.mongodb_con()
         data=self.browser.callback_res()
-        #print(data)
         mongodb_cons.into_target(self.domain,data)
         mongodb_cons.close()
     def while_domain(self):
@@ -32,7 +31,6 @@ class start:
                     break
                 self.browser.regulator(list_url)
                 data=self.browser.callback_res()
-                #print(data)
                 mongodb_cons=mongodb_con.mongodb_con()
                 mongodb_cons.into_target(self.domain,data)
                 mongodb_cons.close()
