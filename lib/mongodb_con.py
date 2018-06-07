@@ -19,6 +19,7 @@ class mongodb_con:
         except Exception as e:
             print(e)
     def find(self,domain,url):
+        domain=domain.replace('.','_')
         collection = self.db_target_domian[domain]
         return collection.find({"url": "%s"%url}).count()
     def close(self):

@@ -12,7 +12,6 @@ class start:
         self.domain=domain
         self.Blacklist_domain=Blacklist_domain
         self.models=model.model()
-        self.mongodb_con=mongodb_con.mongodb_con()
         self.browser=browser_pool.browser_pool()
     def start(self):
         self.models.del_tmp()
@@ -20,7 +19,9 @@ class start:
         EnumSub.sort_domain(2)
         self.browser.regulator(EnumSub.callback_domain())
         mongodb_cons=mongodb_con.mongodb_con()
-        mongodb_cons.into_target(self.domain,self.browser.callback_res())
+        data=self.browser.callback_res()
+        #print(data)
+        mongodb_cons.into_target(self.domain,data)
         mongodb_cons.close()
     def while_domain(self):
         try:
@@ -30,9 +31,9 @@ class start:
                 if list_url==[]:
                     break
                 self.browser.regulator(list_url)
-                mongodb_cons=mongodb_con.mongodb_con()
                 data=self.browser.callback_res()
-                print(data)
+                #print(data)
+                mongodb_cons=mongodb_con.mongodb_con()
                 mongodb_cons.into_target(self.domain,data)
                 mongodb_cons.close()
                 list_url=[]

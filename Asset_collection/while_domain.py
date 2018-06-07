@@ -11,7 +11,7 @@ class while_domain:
         self.models=model.model()
         self.domain=domain
         self.Blacklist_domain=Blacklist_domain
-        self.mongodb_con=mongodb_con.mongodb_con()
+        self.mongodb_cons=mongodb_con.mongodb_con()
     def read_tmp_domain(self):
         list_url=[]
         for i in self.models.callback_tmp_list():
@@ -20,7 +20,7 @@ class while_domain:
                 list_url.append(url)      
         list_url=list(set([i for i in list_url if re.search(r'.*\.qq\.com$', i)!=None]))
         list_url=[i for i in list_url if self.models.Blacklist(self.Blacklist_domain, i)!=False]
-        list_url=[i for i in list_url if self.mongodb_con.find(self.domain, i)==0]
+        list_url=[i for i in list_url if self.mongodb_cons.find(self.domain, i)==0]
         return list_url
 if __name__=="__main__":
     p=while_domain('qq.com',['.qzone.qq.com','.gamebbs.qq.com','.ke.qq.com','.house.qq.com','.auto.qq.com','.openwebgame.qq.com','.house.qq.com'])

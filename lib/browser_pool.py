@@ -52,7 +52,9 @@ class browser_pool:
             fo.write(i+'\n')
         fo.close()
     def callback_res(self):
-        return self.list_res
+        data=self.list_res
+        self.list_res=[]
+        return data
     def close_browser(self):
         for browser in self.list_browser:
             browser.close()
