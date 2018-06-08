@@ -58,8 +58,8 @@ class model:
             path_href="{path}\\tmp\\{filename}.txt".format(path=self.read_config()['path'],filename=filename)
             if os.path.exists(path_href):
                 os.remove(path_href)
-    def Blacklist(self,Blacklist_domain,domain):
-        for j in Blacklist_domain:
+    def Blacklist(self,domain):
+        for j in self.read_config()['path']:
             if j in domain:
                 return False
     def read_tmp_domain(self):
@@ -70,7 +70,7 @@ class model:
             if url!=False:
                 list_url.append(url)      
         list_url=list(set([i for i in list_url if re.search(r'.*%s$'%self.read_config()['target_domain'], i)!=None]))
-        list_url=[i for i in list_url if self.Blacklist(self.read_config()['Blacklist_domain'], i)!=False]
+        list_url=[i for i in list_url if self.Blacklist(i)!=False]
         mongodb_cons=mongodb_con.mongodb_con()
         list_url=[i for i in list_url if mongodb_cons.find(self.read_config()['target_domain'], i)==0]
         return list_url
