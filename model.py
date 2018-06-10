@@ -24,7 +24,7 @@ class model:
                 mongodb_cons=mongodb_con.mongodb_con()
                 mongodb_cons.into_target(self.read_config()['target_domain'],data)
                 mongodb_cons.close()
-                list_url=[]
+                list_url=[] 
         except Exception as e:
             print(e)
     def threadpool_fun(self,fun,lists,num):
@@ -47,15 +47,15 @@ class model:
             return False  
     def callback_tmp_list(self):
         list_url=[]
-        for i in open(r"{path}\\tmp\\href_tmp.txt".format(path=self.read_config()['path'])):
+        for i in open(r"{path}\tmp\href_tmp.txt".format(path=self.read_config()['path'])):
             list_url.append(i.strip())
-        for i in open(r"{path}\\tmp\\network_tmp.txt".format(path=self.read_config()['path'])):
+        for i in open(r"{path}\tmp\network_tmp.txt".format(path=self.read_config()['path'])):
             list_url.append(i.strip())
         return list(set(list_url))
     def del_tmp(self):
         #删除文件，可使用以下两种方法
         for filename in ['href_tmp','network_tmp']:
-            path_href="{path}\\tmp\\{filename}.txt".format(path=self.read_config()['path'],filename=filename)
+            path_href=r"{path}\tmp\{filename}.txt".format(path=self.read_config()['path'],filename=filename)
             if os.path.exists(path_href):
                 os.remove(path_href)
     def Blacklist(self,domain):

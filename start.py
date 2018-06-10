@@ -6,23 +6,26 @@ Created on 2018年5月31日
 '''
 from Asset_collection import EnumSubDomain
 from lib import browser_pool,mongodb_con
-import model
+import model,time
 class start:
     def __init__(self):
         self.models=model.model()
         self.domain=self.models.read_config()['target_domain']
-        #self.browser=browser_pool.browser_pool()
+        self.browser=browser_pool.browser_pool()
     def start(self):
         self.models.del_tmp()
         EnumSub=EnumSubDomain.EnumSubDomain(self.domain)
-        EnumSub.sort_domain(2)
+        EnumSub.sort_domain(3)
         self.browser.regulator(EnumSub.callback_domain())
         mongodb_cons=mongodb_con.mongodb_con()
         data=self.browser.callback_res()
         mongodb_cons.into_target(self.domain,data)
         mongodb_cons.close()
-        self.models.while_domain(self.browser)          
+        self.models.while_domain(self.browser)      
 if __name__=="__main__":
+    start_time = time.clock()
     itme=start()
     itme.start()
+    end = time.clock()
+    print(end-start_time) 
     #itme.while_domain()
