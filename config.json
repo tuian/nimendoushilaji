@@ -3,6 +3,6 @@
 "path":"C:\\Users\\63571\\eclipse-workspace\\nimendoushilaji",
 "chrome_path":"C:\\Users\\63571\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe",
 "chrome_user_data":"C:\\Users\\63571\\AppData\\Local\\Google\\Chrome\\User Data",
-"Blacklist_domain":"['.qzone.qq.com','.gamebbs.qq.com','.ke.qq.com','.house.qq.com','.auto.qq.com','.openwebgame.qq.com','.house.qq.com']",
+"Blacklist_domain":[".qzone.qq.com",".gamebbs.qq.com",".ke.qq.com",".house.qq.com",".auto.qq.com",".openwebgame.qq.com",".house.qq.com"],
 "cookie":{}
 }

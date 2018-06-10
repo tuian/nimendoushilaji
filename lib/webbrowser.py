@@ -52,7 +52,8 @@ class webbrowser:
         try:
             list_url=list(set([i.get_attribute('href') for i in self.driver.find_elements_by_xpath("//a[@href]")]))
             return (list_url)
-        except:
+        except Exception as e:
+            print(e)
             return []
     def callback_source(self):
         #return 页面源码

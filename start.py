@@ -11,7 +11,7 @@ class start:
     def __init__(self):
         self.models=model.model()
         self.domain=self.models.read_config()['target_domain']
-        self.browser=browser_pool.browser_pool()
+        #self.browser=browser_pool.browser_pool()
     def start(self):
         self.models.del_tmp()
         EnumSub=EnumSubDomain.EnumSubDomain(self.domain)
@@ -21,7 +21,7 @@ class start:
         data=self.browser.callback_res()
         mongodb_cons.into_target(self.domain,data)
         mongodb_cons.close()
-        self.models.while_domain(self.browser)            
+        self.models.while_domain(self.browser)          
 if __name__=="__main__":
     itme=start()
     itme.start()

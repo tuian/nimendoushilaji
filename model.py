@@ -47,9 +47,9 @@ class model:
             return False  
     def callback_tmp_list(self):
         list_url=[]
-        for i in open("{path}\\tmp\\href_tmp.txt".format(path=self.read_config()['path'])):
+        for i in open(r"{path}\\tmp\\href_tmp.txt".format(path=self.read_config()['path'])):
             list_url.append(i.strip())
-        for i in open("{path}\\tmp\\network_tmp.txt".format(path=self.read_config()['path'])):
+        for i in open(r"{path}\\tmp\\network_tmp.txt".format(path=self.read_config()['path'])):
             list_url.append(i.strip())
         return list(set(list_url))
     def del_tmp(self):
@@ -59,9 +59,10 @@ class model:
             if os.path.exists(path_href):
                 os.remove(path_href)
     def Blacklist(self,domain):
-        for j in self.read_config()['path']:
+        for j in self.read_config()['Blacklist_domain']:
             if j in domain:
                 return False
+                break
     def read_tmp_domain(self):
         #读取tmp目录文件 去重返回
         list_url=[]

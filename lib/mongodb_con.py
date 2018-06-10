@@ -28,10 +28,14 @@ class mongodb_con:
         domain=domain.replace('.','_')
         collection = self.db_target_domian[domain]
         return collection.find({"url": "%s"%url}).count()
-    def callback_list_url(self,domain):
+    def callback_list_url(self,domain,limt):
         domain=domain.replace('.','_')
         collection = self.db_target_domian[domain]
-        return collection.find({"state":0}, { "id": 1, "url": 1 }).limit(200)
+        return collection.find({"state":0}, { "id": 1, "url": 1 }).limit(limt)
+    def callback_update(self,domain,url):
+        domain=domain.replace('.','_')
+        collection = self.db_target_domian[domain]
+        return collection.find({"url":url}, {"html_size": 1 })
     def close(self):
         self.client.close()
 if '__main__' == __name__:
