@@ -32,10 +32,13 @@ class mongodb_con:
         domain=domain.replace('.','_')
         collection = self.db_target_domian[domain]
         return collection.find({"state":0}, { "id": 1, "url": 1 }).limit(limt)
-    def callback_update(self,domain,url):
+    def callback_update(self,domain,list_url):
         domain=domain.replace('.','_')
         collection = self.db_target_domian[domain]
-        return collection.find({"url":url}, {"html_size": 1 })
+        
+        #for i in list_url:
+        #    collection.update_one({"url": i},{"$set": {"state": 1}})
+        #return collection.find({"url":url}, {"html_size": 1 })
     def close(self):
         self.client.close()
 if '__main__' == __name__:

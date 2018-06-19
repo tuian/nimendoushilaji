@@ -11,12 +11,18 @@ class while_domain:
         self.models=model.model()
         self.domain=self.models.read_config()['target_domain']
         self.Blacklist_domain=self.models.read_config()['Blacklist_domain']
-        self.mongodb_cons=mongodb_con.mongodb_con()
+        self.browser=browser_pool.browser_pool()
     def start(self):
-        list_url=[i['url'] for i in self.mongodb_cons.callback_list_url(self.domain,5)]
-        print(list_url)
-        print(self.mongodb_cons.callback_update(self.domain, 'http://z.qq.com')[0]['html_size'])
-
+        mongodb_cons=mongodb_con.mongodb_con()
+        '''
+        list_url=[i['url'] for i in mongodb_cons.callback_list_url(self.domain,5)]
+        self.browser.regulator(list_url)
+        print(self.browser.callback_res())'''
+        #print(mongodb_cons.callback_update(self.domain, list_url))
+        data={'url': 'http://o.qq.com', 'current_url': 'http://o.qq.com/mobile/mobile-page.html', 'title': 'QQ International - Fun to Chat', 'html_size': 4945, 'state': 0, 'time': '2018-06-19'}
+        #print(data['url'])
+        mongodb_cons.callback_update(self.domain, data)
+        self.models.del_tmp()
 if __name__=="__main__":
     p=while_domain()
     p.start()
