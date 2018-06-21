@@ -5,6 +5,7 @@ Created on 2018��5��22��
 @author: guimaizi
 '''
 from pymongo import MongoClient
+import time
 class mongodb_con:
     def __init__(self):
         '''
@@ -35,10 +36,13 @@ class mongodb_con:
     def callback_update(self,domain,list_url):
         domain=domain.replace('.','_')
         collection = self.db_target_domian[domain]
-        
-        #for i in list_url:
-        #    collection.update_one({"url": i},{"$set": {"state": 1}})
-        #return collection.find({"url":url}, {"html_size": 1 })
+        for data in list_url:
+            len_data=collection.find({"url":data['url']}, {"html_size": 1 })[0]['html_size']
+            #len_data=collection.find({"url":"http://z.qq.com"}, {"html_size": 1 })[0]['html_size']
+            if len_data/data['html_size']>=1.2 or len_data/data['html_size']<=0.8:
+                collection.update_one({"url": data['url']},{"$set": {"state": 1,"html_size":data['html_size'],"title":data['title'],"time":time.strftime('%Y-%m-%d',time.localtime())}})
+            else:
+                collection.update_one({"url": data['url']},{"$set": {"state": 1}})
     def close(self):
         self.client.close()
 if '__main__' == __name__:
