@@ -4,5 +4,6 @@ encoding//Asset_collection/while_domain.py=utf-8
 encoding//lib/browser_pool.py=utf-8
 encoding//lib/mongodb_con.py=utf-8
 encoding//lib/webbrowser.py=utf-8
+encoding//spider/filter_url.py=utf-8
 encoding/model.py=utf-8
 encoding/start.py=utf-8
